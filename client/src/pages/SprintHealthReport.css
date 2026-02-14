@@ -1,0 +1,134 @@
+.sprint-health-report {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.health-layout {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: var(--spacing-lg);
+  align-items: start;
+}
+
+.health-main {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.chart-card {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.comparison-card {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.comparison-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.rag-badge {
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-weight: 700;
+}
+
+.rag-badge.rag-green {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+
+.rag-badge.rag-amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+
+.rag-badge.rag-red {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}
+
+.trend-indicator {
+  font-weight: 700;
+}
+
+.trend-improving {
+  color: var(--success);
+}
+
+.trend-declining {
+  color: var(--danger);
+}
+
+.trend-stable {
+  color: var(--gray-600);
+}
+
+.stepper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.step-number {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--gray-100);
+  border: 2px solid var(--gray-200);
+}
+
+.step.active .step-number {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+}
+
+.step.completed .step-number {
+  background: var(--success);
+  border-color: var(--success);
+  color: white;
+}
+
+.step-connector {
+  width: 60px;
+  height: 2px;
+  background: var(--gray-200);
+}
+
+.form-container {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-sm);
+}
+
+@media (max-width: 980px) {
+  .health-layout {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,103 @@
+.sprint-card {
+  background: white;
+  border-radius: 16px;
+  padding: 1.4rem;
+  box-shadow: var(--shadow-md);
+  display: grid;
+  gap: 0.9rem;
+  border: 1px solid var(--gray-200);
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.sprint-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.sprint-header-info h3 {
+  margin: 0 0 0.25rem 0;
+  font-size: 1.1rem;
+}
+
+.sprint-goal p {
+  margin: 0;
+  color: var(--gray-700);
+  line-height: 1.5;
+}
+
+.sprint-dates {
+  display: flex;
+  justify-content: space-between;
+  background: #f8fafc;
+  padding: 0.75rem;
+  border-radius: 12px;
+  border: 1px solid var(--gray-200);
+}
+
+.date-label {
+  font-size: 0.75rem;
+  color: var(--gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.progress-section {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.progress-bar-container {
+  height: 10px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #2563eb, #6366f1);
+}
+
+.upcoming-info {
+  padding: 0.6rem 0.8rem;
+  background: rgba(37, 99, 235, 0.08);
+  border-radius: 12px;
+  color: #1d4ed8;
+  font-weight: 600;
+}
+
+.type-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: var(--gray-100);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  color: var(--gray-700);
+}
+
+.health-indicator {
+  margin-top: 0.25rem;
+}
+
+.health-badge {
+  display: inline-block;
+  padding: 0.25rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.health-badge.health-green {
+  background: rgba(34, 197, 94, 0.12);
+  color: #15803d;
+}
+
+.health-badge.health-amber {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+
+.health-badge.health-red {
+  background: rgba(239, 68, 68, 0.12);
+  color: #b91c1c;
+}

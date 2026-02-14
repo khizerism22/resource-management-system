@@ -1,0 +1,19 @@
+.trend-indicator {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-weight: 600;
+}
+
+.trend-icon {
+  font-size: 1.5rem;
+}
+
+.trend-label {
+  font-size: 1rem;
+}
+
+.trend-percentage {
+  font-size: 0.9rem;
+  color: var(--gray-600);
+}

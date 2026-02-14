@@ -4,7 +4,7 @@ const { Schema } = mongoose
 
 const projectSchema = new Schema(
   {
-    projectName: {
+    name: {
       type: String,
       required: true,
       trim: true,
@@ -28,12 +28,19 @@ const projectSchema = new Schema(
     methodology: {
       type: String,
       required: true,
-      enum: ['Scrum', 'Kanban']
+      enum: ['Scrum', 'Kanban'],
+      default: 'Scrum'
     },
     status: {
       type: String,
       required: true,
-      enum: ['Active', 'OnHold', 'Completed']
+      enum: ['Active', 'OnHold', 'Completed'],
+      default: 'Active'
+    },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      required: true
     },
     assignedResources: {
       type: [Schema.Types.ObjectId],

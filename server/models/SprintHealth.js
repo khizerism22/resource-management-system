@@ -28,6 +28,16 @@ const sprintHealthSchema = new Schema(
       required: true,
       unique: true
     },
+    createdBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      default: null
+    },
+    updatedBy: {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+      default: null
+    },
     sprintPlanningEffectiveness: { type: ratingSchema, required: true },
     backlogReadiness: { type: ratingSchema, required: true },
     teamCollaboration: { type: ratingSchema, required: true },
@@ -72,6 +82,9 @@ function calculateScore(doc) {
 }
 
 sprintHealthSchema.pre('validate', function sprintHealthCompute(next) {
+  if (this.overallHealthScore !== null && this.overallHealthScore !== undefined && this.ragStatus) {
+    return next()
+  }
   const { score, rag } = calculateScore(this)
   this.overallHealthScore = score
   this.ragStatus = rag

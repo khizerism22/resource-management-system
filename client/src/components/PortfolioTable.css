@@ -1,0 +1,146 @@
+.portfolio-table-container {
+  background: white;
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  overflow-x: auto;
+}
+
+.portfolio-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.portfolio-table thead {
+  background: var(--gray-50);
+}
+
+.portfolio-table th,
+.portfolio-table td {
+  padding: 0.85rem;
+  text-align: left;
+  border-bottom: 1px solid var(--gray-200);
+  font-size: var(--font-size-sm);
+}
+
+.portfolio-table th {
+  font-weight: 600;
+  color: var(--gray-700);
+  cursor: pointer;
+}
+
+.portfolio-table tbody tr:hover {
+  background: var(--gray-50);
+}
+
+.project-name {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.status-badge,
+.rag-badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.status-active {
+  background: rgba(34, 197, 94, 0.15);
+  color: #15803d;
+}
+
+.status-onhold {
+  background: rgba(245, 158, 11, 0.15);
+  color: #b45309;
+}
+
+.status-completed {
+  background: rgba(148, 163, 184, 0.2);
+  color: #475569;
+}
+
+.rag-green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #15803d;
+}
+
+.rag-amber {
+  background: rgba(245, 158, 11, 0.2);
+  color: #b45309;
+}
+
+.rag-red {
+  background: rgba(239, 68, 68, 0.2);
+  color: #b91c1c;
+}
+
+.rag-gray {
+  background: rgba(148, 163, 184, 0.2);
+  color: #475569;
+}
+
+.score-with-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.mini-bar {
+  flex: 1;
+  height: 6px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.mini-bar-fill {
+  height: 100%;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.utilization-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.utilization-bar-mini {
+  flex: 1;
+  height: 6px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.utilization-bar-mini-fill {
+  height: 100%;
+}
+
+.btn-icon {
+  background: var(--gray-100);
+  border: none;
+  border-radius: 8px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: background var(--transition-fast);
+}
+
+.btn-icon:hover {
+  background: var(--gray-200);
+}
+
+.danger {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.warning {
+  color: var(--warning);
+  font-weight: 600;
+}

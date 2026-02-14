@@ -1,0 +1,39 @@
+.capacity-view {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.date-controls {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.capacity-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing-md);
+}
+
+.utilization-bar-container {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.utilization-bar {
+  height: 8px;
+  background: var(--success);
+  border-radius: 999px;
+  min-width: 60px;
+}
+
+.over-allocated {
+  background: rgba(239, 68, 68, 0.06);
+}
+
+@media (max-width: 900px) {
+  .capacity-stats {
+    grid-template-columns: 1fr;
+  }
+}

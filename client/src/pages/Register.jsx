@@ -29,10 +29,10 @@ export default function Register() {
   }
 
   return (
-    <div className="page">
+    <div className="auth-page">
       <h1>Register</h1>
       {error ? <p className="error">{error}</p> : null}
-      <form onSubmit={handleSubmit} className="card">
+      <form onSubmit={handleSubmit} className="auth-card">
         <label>
           Name
           <input name="name" value={form.name} onChange={handleChange} required />

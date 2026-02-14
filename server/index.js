@@ -4,6 +4,13 @@ import dotenv from 'dotenv'
 import cors from 'cors'
 
 import authRoutes from './routes/authRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+import projectRoutes from './routes/projectRoutes.js'
+import sprintRoutes from './routes/sprintRoutes.js'
+import resourceRoutes from './routes/resourceRoutes.js'
+import allocationRoutes from './routes/allocationRoutes.js'
+import sprintHealthRoutes from './routes/sprintHealthRoutes.js'
+import dashboardRoutes from './routes/dashboardRoutes.js'
 
 dotenv.config()
 
@@ -42,6 +49,13 @@ app.get('/api/db/health', (req, res) => {
 })
 
 app.use('/api/auth', authRoutes)
+app.use('/api/users', userRoutes)
+app.use('/api/projects', projectRoutes)
+app.use('/api', sprintRoutes)
+app.use('/api/resources', resourceRoutes)
+app.use('/api/allocations', allocationRoutes)
+app.use('/api', sprintHealthRoutes)
+app.use('/api', dashboardRoutes)
 
 async function start() {
   try {

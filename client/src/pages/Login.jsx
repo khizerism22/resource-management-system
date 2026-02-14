@@ -24,10 +24,10 @@ export default function Login() {
   }
 
   return (
-    <div className="page">
+    <div className="auth-page">
       <h1>Login</h1>
       {error ? <p className="error">{error}</p> : null}
-      <form onSubmit={handleSubmit} className="card">
+      <form onSubmit={handleSubmit} className="auth-card">
         <label>
           Email
           <input name="email" type="email" value={form.email} onChange={handleChange} required />

@@ -1,0 +1,86 @@
+.project-health-card {
+  background: white;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.project-health-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.project-health-card .card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.project-health-card .project-info h3 {
+  margin: 0;
+  font-size: var(--font-size-lg);
+}
+
+.project-health-card .project-client {
+  margin: var(--spacing-xs) 0 0;
+  color: var(--gray-600);
+  font-size: var(--font-size-sm);
+}
+
+.rag-indicator-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 4px rgba(255, 255, 255, 0.6);
+}
+
+.card-metrics {
+  display: grid;
+  gap: var(--spacing-sm);
+}
+
+.metric-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-size-sm);
+  color: var(--gray-700);
+}
+
+.metric-value {
+  font-weight: 600;
+  color: var(--gray-900);
+}
+
+.metric-value.danger {
+  color: var(--danger);
+}
+
+.metric-value.warning {
+  color: var(--warning);
+}
+
+.card-footer {
+  display: grid;
+  gap: var(--spacing-xs);
+}
+
+.utilization-bar-small {
+  height: 6px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.utilization-fill {
+  height: 100%;
+}
+
+.utilization-text {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}

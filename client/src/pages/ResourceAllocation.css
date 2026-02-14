@@ -1,0 +1,43 @@
+.resource-allocation {
+  display: grid;
+  gap: var(--spacing-lg);
+}
+
+.percentage-cell {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+}
+
+.percentage-bar-small {
+  width: 80px;
+  height: 8px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.percentage-fill {
+  height: 100%;
+}
+
+.allocation-slider {
+  width: 110px;
+  accent-color: var(--primary);
+}
+
+.table-container table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-container th,
+.table-container td {
+  padding: 0.75rem;
+  border-bottom: 1px solid var(--gray-200);
+  text-align: left;
+}
+
+.overdue {
+  opacity: 0.7;
+}

@@ -1,0 +1,124 @@
+.sprint-timeline {
+  width: 100%;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.timeline-container {
+  display: flex;
+  gap: 2rem;
+  min-width: max-content;
+  padding: 0 0.5rem;
+}
+
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  min-width: 220px;
+}
+
+.timeline-dot {
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  color: white;
+  position: relative;
+  z-index: 2;
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.15);
+}
+
+.timeline-dot.timeline-active {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.timeline-dot.timeline-completed {
+  background: linear-gradient(135deg, #94a3b8, #64748b);
+}
+
+.timeline-dot.timeline-planned {
+  background: linear-gradient(135deg, #2563eb, #6366f1);
+}
+
+.timeline-content {
+  margin-top: 0.8rem;
+  text-align: center;
+  padding: 0.9rem;
+  background: white;
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--gray-200);
+}
+
+.timeline-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.timeline-status {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.timeline-status.timeline-active {
+  color: #15803d;
+}
+
+.timeline-status.timeline-completed {
+  color: var(--gray-600);
+}
+
+.timeline-status.timeline-planned {
+  color: #1d4ed8;
+}
+
+.timeline-goal {
+  font-size: 0.85rem;
+  color: var(--gray-600);
+  margin: 0.5rem 0;
+  min-height: 2.2rem;
+}
+
+.timeline-dates {
+  font-size: 0.8rem;
+  color: var(--gray-600);
+}
+
+.timeline-connector {
+  position: absolute;
+  top: 27px;
+  left: calc(100% - 12px);
+  width: 24px;
+  height: 2px;
+  background: var(--gray-200);
+  z-index: 1;
+}
+
+@media (max-width: 768px) {
+  .timeline-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-item {
+    width: 100%;
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .timeline-content {
+    text-align: left;
+  }
+
+  .timeline-connector {
+    display: none;
+  }
+}

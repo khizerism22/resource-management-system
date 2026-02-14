@@ -1,0 +1,83 @@
+:root {
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 1.5rem;
+  --gray-100: #f5f6f7;
+  --gray-300: #d1d5db;
+  --danger-light: #ffe4e6;
+  --radius-sm: 6px;
+  --font-size-sm: 0.9rem;
+  --transition-fast: 150ms ease;
+}
+
+.user-management {
+  padding: var(--spacing-lg);
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-md);
+}
+
+.filters {
+  display: flex;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.search-form {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex: 1;
+}
+
+.search-form .form-input {
+  flex: 1;
+}
+
+.role-select {
+  padding: 4px 8px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-sm);
+}
+
+.table-container {
+  background: white;
+  border-radius: 12px;
+  padding: 0.5rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-sm);
+}
+
+.btn-icon {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition-fast);
+}
+
+.btn-icon:hover {
+  background: var(--gray-100);
+}
+
+.btn-icon.btn-danger:hover {
+  background: var(--danger-light);
+}
+
+.empty-state {
+  padding: 1.5rem;
+  text-align: center;
+  color: #666;
+}
