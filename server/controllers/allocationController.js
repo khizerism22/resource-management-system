@@ -1,6 +1,7 @@
 import ResourceAllocation from '../models/ResourceAllocation.js'
 import Resource from '../models/Resource.js'
 import Project from '../models/Project.js'
+import AlertService from '../services/alertService.js'
 
 function canManage(user) {
   return ['Admin', 'PM'].includes(user?.role)
@@ -66,6 +67,7 @@ export async function createAllocation(req, res, next) {
     const capacity = resource.availabilityPercentage ?? 100
 
     if (totalAllocated > capacity) {
+      await AlertService.notifyOverAllocation(resource, totalAllocated, projectId)
       return res.status(400).json({
         success: false,
         error: `Over-allocation detected. Resource would be allocated ${totalAllocated}% (capacity ${capacity}%)`,
@@ -131,6 +133,9 @@ export async function updateAllocation(req, res, next) {
     const capacity = resource?.availabilityPercentage ?? 100
 
     if (totalAllocated > capacity) {
+      if (resource) {
+        await AlertService.notifyOverAllocation(resource, totalAllocated, allocation.project)
+      }
       return res.status(400).json({
         success: false,
         error: `Over-allocation detected. Total would be ${totalAllocated}% (capacity ${capacity}%)`,

@@ -11,6 +11,8 @@ import resourceRoutes from './routes/resourceRoutes.js'
 import allocationRoutes from './routes/allocationRoutes.js'
 import sprintHealthRoutes from './routes/sprintHealthRoutes.js'
 import dashboardRoutes from './routes/dashboardRoutes.js'
+import reportRoutes from './routes/reportRoutes.js'
+import alertRoutes from './routes/alertRoutes.js'
 
 dotenv.config()
 
@@ -32,6 +34,7 @@ import './models/ResourceAllocation.js'
 import './models/Project.js'
 import './models/Sprint.js'
 import './models/SprintHealth.js'
+import './models/Alert.js'
 
 app.get('/api/health', (req, res) => {
   res.json({ ok: true })
@@ -56,6 +59,8 @@ app.use('/api/resources', resourceRoutes)
 app.use('/api/allocations', allocationRoutes)
 app.use('/api', sprintHealthRoutes)
 app.use('/api', dashboardRoutes)
+app.use('/api', reportRoutes)
+app.use('/api/alerts', alertRoutes)
 
 async function start() {
   try {

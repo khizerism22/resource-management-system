@@ -1,5 +1,6 @@
 import SprintHealth from '../models/SprintHealth.js'
 import Sprint from '../models/Sprint.js'
+import AlertService from '../services/alertService.js'
 import {
   calculateOverallScore,
   calculateRAGStatus,
@@ -75,6 +76,8 @@ export async function createSprintHealth(req, res, next) {
       createdBy: req.user?._id || null
     })
 
+    const previousOutcome = sprint.overallOutcome
+
     await Sprint.findByIdAndUpdate(sprintId, {
       goalAchievement,
       overallOutcome,
@@ -85,6 +88,14 @@ export async function createSprintHealth(req, res, next) {
     const populated = await SprintHealth.findById(sprintHealth._id)
       .populate('sprint', 'sprintNumber project startDate endDate')
       .populate('createdBy', 'name email')
+
+    if (overallOutcome === 'Failure' && previousOutcome !== 'Failure') {
+      await AlertService.notifySprintFailure(sprint, sprint.project)
+    }
+
+    if (overallOutcome === 'AtRisk') {
+      await AlertService.checkConsecutiveAtRiskSprints(sprint.project?._id || sprint.project)
+    }
 
     return res.status(201).json({
       success: true,
@@ -187,6 +198,7 @@ export async function updateSprintHealth(req, res, next) {
     }
 
     const sprint = await Sprint.findById(sprintId)
+    const previousOutcome = sprint?.overallOutcome
     const outcome = overallOutcome || sprint?.overallOutcome || 'Success'
 
     const overallHealthScore = calculateOverallScore(dimensions, outcome)
@@ -212,6 +224,16 @@ export async function updateSprintHealth(req, res, next) {
         ...(failureReasons && { failureReasons }),
         ...(comments && { comments })
       })
+    }
+
+    const updatedSprint = await Sprint.findById(sprintId).populate('project', 'name')
+
+    if (overallOutcome === 'Failure' && previousOutcome !== 'Failure') {
+      await AlertService.notifySprintFailure(updatedSprint, updatedSprint.project)
+    }
+
+    if (overallOutcome === 'AtRisk') {
+      await AlertService.checkConsecutiveAtRiskSprints(updatedSprint.project?._id || updatedSprint.project)
     }
 
     return res.json({
