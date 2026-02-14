@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
 import AppShell from '../components/AppShell.jsx'
 import ProjectCard from '../components/ProjectCard.jsx'
+import { CardSkeleton } from '../components/SkeletonLoader.jsx'
 import { projectService } from '../services/projectService.js'
 import './ProjectList.css'
 
@@ -68,7 +69,7 @@ export default function ProjectList() {
   if (loading) {
     return (
       <AppShell title="Projects">
-        <div>Loading projects...</div>
+        <CardSkeleton count={6} />
       </AppShell>
     )
   }

@@ -4,6 +4,7 @@ import AppShell from '../components/AppShell.jsx'
 import SprintCard from '../components/SprintCard.jsx'
 import SprintForm from '../components/SprintForm.jsx'
 import SprintTimeline from '../components/SprintTimeline.jsx'
+import { CardSkeleton } from '../components/SkeletonLoader.jsx'
 import { sprintService } from '../services/sprintService.js'
 import { projectService } from '../services/projectService.js'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -89,7 +90,7 @@ export default function SprintManagement() {
   if (loading) {
     return (
       <AppShell title="Sprints">
-        <div>Loading sprints...</div>
+        <CardSkeleton count={4} />
       </AppShell>
     )
   }

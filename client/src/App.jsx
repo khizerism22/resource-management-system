@@ -15,6 +15,9 @@ import SprintManagement from './pages/SprintManagement.jsx'
 import SprintHealthReport from './pages/SprintHealthReport.jsx'
 import ProjectDashboard from './pages/ProjectDashboard.jsx'
 import PortfolioDashboard from './pages/PortfolioDashboard.jsx'
+import Reports from './pages/Reports.jsx'
+import Alerts from './pages/Alerts.jsx'
+import NotFound from './pages/NotFound.jsx'
 
 export default function App() {
   return (
@@ -125,7 +128,23 @@ export default function App() {
           </ProtectedRoute>
         }
       />
-      <Route path="*" element={<Navigate to="/" replace />} />
+      <Route
+        path="/reports"
+        element={
+          <ProtectedRoute>
+            <Reports />
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/alerts"
+        element={
+          <ProtectedRoute>
+            <Alerts />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   )
 }

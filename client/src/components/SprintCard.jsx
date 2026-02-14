@@ -50,20 +50,22 @@ export default function SprintCard({ sprint, onEdit, onDelete, canManage }) {
   return (
     <div className="sprint-card">
       <div className="card-header">
-        <div className="sprint-header-info">
-          <h3>Sprint #{sprint.sprintNumber}</h3>
-          {status && <span className={`badge ${getStatusBadgeClass(status.status)}`}>{status.status}</span>}
-        </div>
-        {canManage && (
-          <div className="card-actions">
-            <button className="btn-icon" onClick={onEdit} title="Edit">
-              Edit
-            </button>
-            <button className="btn-icon btn-danger" onClick={onDelete} title="Delete">
-              Delete
-            </button>
+        <div className="sprint-title-row">
+          <div className="sprint-header-info">
+            <h3>Sprint #{sprint.sprintNumber}</h3>
+            {status && <span className={`badge ${getStatusBadgeClass(status.status)}`}>{status.status}</span>}
           </div>
-        )}
+          {canManage && (
+            <div className="card-actions">
+              <button className="action-btn" onClick={onEdit} title="Edit">
+                Edit
+              </button>
+              <button className="action-btn danger" onClick={onDelete} title="Delete">
+                Delete
+              </button>
+            </div>
+          )}
+        </div>
       </div>
 
       <div className="sprint-goal">

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import AppShell from '../components/AppShell.jsx'
 import ResourceCard from '../components/ResourceCard.jsx'
+import { CardSkeleton } from '../components/SkeletonLoader.jsx'
 import ResourceModal from '../components/ResourceModal.jsx'
 import { resourceService } from '../services/resourceService.js'
 import { useAuth } from '../context/AuthContext.jsx'
@@ -88,7 +89,7 @@ export default function ResourceList() {
   if (loading) {
     return (
       <AppShell title="Resources">
-        <div>Loading resources...</div>
+        <CardSkeleton count={6} />
       </AppShell>
     )
   }

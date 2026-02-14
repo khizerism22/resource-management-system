@@ -89,6 +89,27 @@ export default function ProjectDetails() {
     }
   }
 
+  function getSprintOutcomeMeta(sprint) {
+    const now = new Date()
+    const start = new Date(sprint.startDate)
+    const end = new Date(sprint.endDate)
+
+    if (sprint.overallOutcome === 'Failure') {
+      return { label: 'Failure', className: 'failure' }
+    }
+    if (sprint.overallOutcome === 'AtRisk') {
+      return { label: 'At Risk', className: 'atrisk' }
+    }
+
+    if (now < start) return { label: 'Planned', className: 'planned' }
+    if (now >= start && now <= end) return { label: 'Active', className: 'active' }
+    if (now > end && sprint.overallOutcome === 'Success') {
+      return { label: 'Success', className: 'success' }
+    }
+
+    return { label: 'Completed', className: 'completed' }
+  }
+
   const canEdit =
     user?.role === 'Admin' || user?.role === 'PM' || project?.createdBy?._id === user?.id
 
@@ -235,9 +256,14 @@ export default function ProjectDetails() {
                           <td>{formatDate(sprint.startDate)}</td>
                           <td>{formatDate(sprint.endDate)}</td>
                           <td>
-                            <span className={`badge badge-${sprint.overallOutcome.toLowerCase()}`}>
-                              {sprint.overallOutcome}
-                            </span>
+                            {(() => {
+                              const outcome = getSprintOutcomeMeta(sprint)
+                              return (
+                                <span className={`badge badge-${outcome.className}`}>
+                                  {outcome.label}
+                                </span>
+                              )
+                            })()}
                           </td>
                           <td>
                             <button
