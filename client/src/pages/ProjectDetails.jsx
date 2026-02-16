@@ -93,21 +93,19 @@ export default function ProjectDetails() {
     const now = new Date()
     const start = new Date(sprint.startDate)
     const end = new Date(sprint.endDate)
-
-    if (sprint.overallOutcome === 'Failure') {
-      return { label: 'Failure', className: 'failure' }
-    }
-    if (sprint.overallOutcome === 'AtRisk') {
-      return { label: 'At Risk', className: 'atrisk' }
-    }
+    const hasHealth = Boolean(sprint.health)
 
     if (now < start) return { label: 'Planned', className: 'planned' }
     if (now >= start && now <= end) return { label: 'Active', className: 'active' }
-    if (now > end && sprint.overallOutcome === 'Success') {
-      return { label: 'Success', className: 'success' }
+    if (now > end) {
+      if (!hasHealth) return { label: 'Not Assessed', className: 'notassessed' }
+      if (sprint.overallOutcome === 'Failure') return { label: 'Failure', className: 'failure' }
+      if (sprint.overallOutcome === 'AtRisk') return { label: 'At Risk', className: 'atrisk' }
+      if (sprint.overallOutcome === 'Success') return { label: 'Success', className: 'success' }
+      return { label: 'Completed', className: 'completed' }
     }
 
-    return { label: 'Completed', className: 'completed' }
+    return { label: 'Planned', className: 'planned' }
   }
 
   const canEdit =

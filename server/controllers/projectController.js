@@ -52,12 +52,23 @@ export async function getProjectById(req, res, next) {
     }
 
     const sprints = await Sprint.find({ project: req.params.id }).sort({ sprintNumber: 1 })
+    const sprintIds = sprints.map((s) => s._id)
+    const healthRecords = await SprintHealth.find({ sprint: { $in: sprintIds } }).select(
+      'sprint overallHealthScore ragStatus'
+    )
+    const healthBySprint = new Map(
+      healthRecords.map((h) => [String(h.sprint), { overallHealthScore: h.overallHealthScore, ragStatus: h.ragStatus }])
+    )
+    const sprintsWithHealth = sprints.map((s) => ({
+      ...s.toObject(),
+      health: healthBySprint.get(String(s._id)) || null
+    }))
 
     return res.json({
       success: true,
       data: {
         ...project.toObject(),
-        sprints
+        sprints: sprintsWithHealth
       }
     })
   } catch (error) {

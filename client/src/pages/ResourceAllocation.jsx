@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useLocation, useParams } from 'react-router-dom'
 import AppShell from '../components/AppShell.jsx'
 import AllocationForm from '../components/AllocationForm.jsx'
 import { allocationService } from '../services/allocationService.js'
@@ -10,6 +10,7 @@ export default function ResourceAllocation() {
   const [allocations, setAllocations] = useState([])
   const [conflicts, setConflicts] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [isFormOpen, setIsFormOpen] = useState(false)
   const [editingAllocation, setEditingAllocation] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
@@ -17,21 +18,26 @@ export default function ResourceAllocation() {
 
   const { user } = useAuth()
   const { id } = useParams()
+  const location = useLocation()
 
   useEffect(() => {
     fetchAllocations()
     checkConflicts()
-  }, [id])
+  }, [id, location.key])
 
   async function fetchAllocations() {
     setLoading(true)
     try {
-      const filters = {}
-      if (id) filters.resourceId = id
-      const data = await allocationService.getAllAllocations(filters)
+      setError(null)
+      let data = []
+      if (id) {
+        data = await allocationService.getAllAllocations({ resourceId: id })
+      } else {
+        data = await allocationService.getAllAllocations()
+      }
       setAllocations(data)
-    } catch {
-      // ignore
+    } catch (err) {
+      setError(err.response?.data?.error || 'Failed to load allocations')
     } finally {
       setLoading(false)
     }
@@ -90,6 +96,13 @@ export default function ResourceAllocation() {
     return (
       <AppShell title="Allocations">
         <div>Loading allocations...</div>
+      </AppShell>
+    )
+  }
+  if (error) {
+    return (
+      <AppShell title="Allocations">
+        <div className="error">{error}</div>
       </AppShell>
     )
   }
